@@ -1,9 +1,9 @@
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0EA5E9,50:6366F1,100:8B5CF6&height=200&section=header&text=Aryan%20Singh&fontSize=64&fontColor=ffffff&fontAlignY=36&desc=backend%20%C2%B7%20data%20pipelines%20%C2%B7%20applied%20ML&descSize=18&descAlignY=58&animation=fadeIn" alt="Aryan Singh" />
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:00F0FF,50:B026FF,100:FF2E97&height=200&section=header&text=Aryan%20Singh&fontSize=64&fontColor=ffffff&fontAlignY=36&desc=backend%20%C2%B7%20data%20pipelines%20%C2%B7%20applied%20ML&descSize=18&descAlignY=58&animation=fadeIn" alt="Aryan Singh" />
 
 <div align="center">
 
 <a href="https://github.com/aryansingh3">
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=20&duration=2800&pause=900&color=6366F1&center=true&vCenter=true&width=640&lines=I+build+the+pipelines+behind+live-event+ticket+markets.;15M%2B+API+requests+served+%C2%B7+200%2B+daily+users.;Distributed+scrapers.+Change+streams.+Price+forecasts." alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=20&duration=2800&pause=900&color=00F0FF&center=true&vCenter=true&width=640&lines=I+build+the+pipelines+behind+live-event+ticket+markets.;15M%2B+API+requests+served+%C2%B7+200%2B+daily+users.;Distributed+scrapers.+Change+streams.+Price+forecasts." alt="Typing SVG" />
 </a>
 
 <sub>B.Tech Computer Science, NSUT Delhi '24 · Noida, India</sub>
@@ -15,7 +15,7 @@
 
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-aryan10022001-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/aryan10022001)
 [![Kaggle](https://img.shields.io/badge/Kaggle-rrrrarrr-20BEFF?style=for-the-badge&logo=kaggle&logoColor=white)](https://www.kaggle.com/rrrrarrr)
-![Profile views](https://komarev.com/ghpvc/?username=aryansingh3&style=for-the-badge&color=6366F1&label=PROFILE+VIEWS)
+![Profile views](https://komarev.com/ghpvc/?username=aryansingh3&style=for-the-badge&color=B026FF&label=PROFILE+VIEWS)
 
 </div>
 
@@ -35,10 +35,10 @@ Day to day that means distributed scrapers behind rotating proxy pools, MongoDB 
 
 <div align="center">
 
-![Requests served](https://img.shields.io/badge/API_requests_served-15M%2B-0EA5E9?style=for-the-badge&labelColor=161B22)
-![Daily users](https://img.shields.io/badge/daily_active_users-200%2B-6366F1?style=for-the-badge&labelColor=161B22)
-![API clients](https://img.shields.io/badge/API_clients-30%2B-8B5CF6?style=for-the-badge&labelColor=161B22)
-![Commits](https://img.shields.io/badge/my_commits-830%2B-EC4899?style=for-the-badge&labelColor=161B22)
+![Requests served](https://img.shields.io/badge/API_requests_served-15M%2B-00F0FF?style=for-the-badge&labelColor=0B0F14)
+![Daily users](https://img.shields.io/badge/daily_active_users-200%2B-B026FF?style=for-the-badge&labelColor=0B0F14)
+![API clients](https://img.shields.io/badge/API_clients-30%2B-FF2E97?style=for-the-badge&labelColor=0B0F14)
+![Commits](https://img.shields.io/badge/my_commits-830%2B-39FF14?style=for-the-badge&labelColor=0B0F14)
 
 </div>
 
@@ -84,30 +84,37 @@ The analytics backend behind the dashboard — live sales, price history, presal
 ### How it fits together
 
 ```mermaid
+%%{init: {'theme':'base','themeVariables':{
+  'background':'transparent',
+  'primaryColor':'#0B0F14','primaryTextColor':'#E6EDF3','primaryBorderColor':'#00F0FF',
+  'lineColor':'#B026FF','tertiaryColor':'#0B0F14',
+  'clusterBkg':'#0B0F14','clusterBorder':'#233044',
+  'edgeLabelBackground':'#0B0F14','fontSize':'15px'
+}}}%%
 flowchart LR
-    subgraph SRC[" Marketplaces "]
+    subgraph SRC["MARKETPLACES"]
         A1[StubHub]
         A2[SeatGeek]
         A3[Ticketmaster / AXS]
     end
 
-    subgraph ING[" Ingestion "]
+    subgraph ING["INGESTION"]
         B1["Go + Python scrapers<br/>Playwright · rotating proxies"]
         B2["Venue and capacity<br/>workers"]
     end
 
-    subgraph CORE[" Data Core "]
-        C1[(MongoDB)]
+    subgraph CORE["DATA CORE"]
+        C1[("MongoDB")]
         C2["Change-stream daemons<br/>presale / on-sale resolver"]
         C3["Event matcher<br/>Qdrant + LLM judge"]
     end
 
-    subgraph ML[" Intelligence "]
+    subgraph ML["INTELLIGENCE"]
         D1["XGBoost forecasts<br/>1 / 3 / 7-day horizons"]
         D2["BUY · SELL · HOLD<br/>+ risk scoring"]
     end
 
-    subgraph OUT[" Delivery "]
+    subgraph OUT["DELIVERY"]
         E1["Client API<br/>15M+ requests"]
         E2["Dashboard API"]
         E3["React dashboard<br/>200+ daily users"]
@@ -125,11 +132,19 @@ flowchart LR
     C1 --> E2 --> E3
     C1 --> E4
 
-    style C1 fill:#6366F1,stroke:#8B5CF6,stroke-width:2px,color:#fff
-    style E1 fill:#0EA5E9,stroke:#0EA5E9,color:#fff
-    style E3 fill:#0EA5E9,stroke:#0EA5E9,color:#fff
-    style D1 fill:#8B5CF6,stroke:#8B5CF6,color:#fff
-    style D2 fill:#8B5CF6,stroke:#8B5CF6,color:#fff
+    classDef src  fill:#0B0F14,stroke:#00F0FF,stroke-width:2px,color:#00F0FF
+    classDef ing  fill:#0B0F14,stroke:#39FF14,stroke-width:2px,color:#39FF14
+    classDef core fill:#0B0F14,stroke:#B026FF,stroke-width:3px,color:#D9A6FF
+    classDef ml   fill:#0B0F14,stroke:#FF2E97,stroke-width:2px,color:#FF6FBE
+    classDef out  fill:#0B0F14,stroke:#FFD60A,stroke-width:2px,color:#FFD60A
+
+    class A1,A2,A3 src
+    class B1,B2 ing
+    class C1,C2,C3 core
+    class D1,D2 ml
+    class E1,E2,E3,E4 out
+
+    linkStyle default stroke:#B026FF,stroke-width:1.5px
 ```
 
 ---
@@ -148,6 +163,16 @@ flowchart LR
 ### Where my commits go
 
 ```mermaid
+%%{init: {'theme':'base','themeVariables':{
+  'background':'transparent',
+  'pie1':'#00F0FF','pie2':'#B026FF','pie3':'#FF2E97',
+  'pieOpacity':'1',
+  'pieStrokeColor':'#0B0F14','pieStrokeWidth':'3px',
+  'pieOuterStrokeColor':'#0B0F14','pieOuterStrokeWidth':'3px',
+  'pieSectionTextColor':'#0B0F14','pieSectionTextSize':'18px',
+  'pieTitleTextColor':'#B026FF','pieTitleTextSize':'20px',
+  'pieLegendTextColor':'#7D8590','pieLegendTextSize':'15px'
+}}}%%
 pie showData
     title Commits across the production platform
     "Dashboard (React/TS)" : 527
@@ -218,6 +243,28 @@ Step-through visualization of classic sorting algorithms with adjustable array s
 
 ---
 
+## `📄` Research
+
+<table>
+<tr>
+<td valign="top">
+
+### [Comparative Analysis for Speech Recognition using DeepSpeech](https://ieeexplore.ieee.org/document/10739129/)
+
+[![IEEE Xplore](https://img.shields.io/badge/IEEE_Xplore-Published-00F0FF?style=for-the-badge&logo=ieee&logoColor=black&labelColor=0B0F14)](https://ieeexplore.ieee.org/document/10739129/)
+![Primary author](https://img.shields.io/badge/Primary_author-B026FF?style=for-the-badge&labelColor=0B0F14)
+![ICEECT 2024](https://img.shields.io/badge/ICEECT_2024-FF2E97?style=for-the-badge&labelColor=0B0F14)
+
+**IEEE · 2024 International Conference on Electrical, Electronics and Computing Technologies** — Sharda University, 29 Aug 2024. Co-authored with NSUT Delhi faculty.
+
+Automatic speech recognition for **English and Hindi** using a hybrid architecture: CNNs for feature extraction, RNNs for sequence learning, joined by **connectionist temporal classification** so transcription needs no linguistic pre-segmentation. Trained and evaluated on **LJSpeech** (English) and **OpenSLR** (Hindi), measured by **Word Error Rate**.
+
+</td>
+</tr>
+</table>
+
+---
+
 ## `⌨` Toolbox
 
 <div align="center">
@@ -273,19 +320,19 @@ Step-through visualization of classic sorting algorithms with adjustable array s
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=aryansingh3&show_icons=true&count_private=true&include_all_commits=true&hide_border=true&bg_color=00000000&title_color=8B5CF6&icon_color=0EA5E9&text_color=C9D1D9" />
-  <img src="https://github-readme-stats.vercel.app/api?username=aryansingh3&show_icons=true&count_private=true&include_all_commits=true&hide_border=true&bg_color=00000000&title_color=6366F1&icon_color=0EA5E9&text_color=1F2328" alt="GitHub stats" height="170" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=aryansingh3&show_icons=true&count_private=true&include_all_commits=true&hide_border=true&bg_color=00000000&title_color=B026FF&icon_color=00F0FF&text_color=C9D1D9" />
+  <img src="https://github-readme-stats.vercel.app/api?username=aryansingh3&show_icons=true&count_private=true&include_all_commits=true&hide_border=true&bg_color=00000000&title_color=B026FF&icon_color=00F0FF&text_color=1F2328" alt="GitHub stats" height="170" />
 </picture>
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com?user=aryansingh3&hide_border=true&background=00000000&stroke=30363D&ring=8B5CF6&fire=0EA5E9&currStreakLabel=8B5CF6&sideLabels=C9D1D9&currStreakNum=C9D1D9&sideNums=C9D1D9&dates=8B949E" />
-  <img src="https://streak-stats.demolab.com?user=aryansingh3&hide_border=true&background=00000000&stroke=D0D7DE&ring=6366F1&fire=0EA5E9&currStreakLabel=6366F1&sideLabels=1F2328&currStreakNum=1F2328&sideNums=1F2328&dates=6E7781" alt="Streak" height="170" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com?user=aryansingh3&hide_border=true&background=00000000&stroke=30363D&ring=B026FF&fire=FF2E97&currStreakLabel=00F0FF&sideLabels=C9D1D9&currStreakNum=C9D1D9&sideNums=C9D1D9&dates=8B949E" />
+  <img src="https://streak-stats.demolab.com?user=aryansingh3&hide_border=true&background=00000000&stroke=D0D7DE&ring=B026FF&fire=FF2E97&currStreakLabel=00F0FF&sideLabels=1F2328&currStreakNum=1F2328&sideNums=1F2328&dates=6E7781" alt="Streak" height="170" />
 </picture>
 
 <br>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=aryansingh3&layout=donut&langs_count=6&hide=jupyter%20notebook,c,cython,fortran,powershell,smarty,css,html&hide_border=true&bg_color=00000000&title_color=8B5CF6&text_color=C9D1D9" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=aryansingh3&layout=donut&langs_count=6&hide=jupyter%20notebook,c,cython,fortran,powershell,smarty,css,html&hide_border=true&bg_color=00000000&title_color=6366F1&text_color=1F2328" alt="Top languages" height="220" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=aryansingh3&layout=donut&langs_count=6&hide=jupyter%20notebook,c,cython,fortran,powershell,smarty,css,html&hide_border=true&bg_color=00000000&title_color=B026FF&text_color=C9D1D9" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=aryansingh3&layout=donut&langs_count=6&hide=jupyter%20notebook,c,cython,fortran,powershell,smarty,css,html&hide_border=true&bg_color=00000000&title_color=B026FF&text_color=1F2328" alt="Top languages" height="220" />
 </picture>
 
 </div>
@@ -297,8 +344,8 @@ Step-through visualization of classic sorting algorithms with adjustable array s
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=aryansingh3&bg_color=00000000&color=C9D1D9&line=8B5CF6&point=0EA5E9&area_color=6366F1&area=true&hide_border=true&custom_title=Commits%20over%20the%20last%20year" />
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=aryansingh3&bg_color=00000000&color=1F2328&line=6366F1&point=0EA5E9&area_color=8B5CF6&area=true&hide_border=true&custom_title=Commits%20over%20the%20last%20year" alt="Contribution activity graph" width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=aryansingh3&bg_color=00000000&color=C9D1D9&line=00F0FF&point=FF2E97&area_color=B026FF&area=true&hide_border=true&custom_title=Commits%20over%20the%20last%20year" />
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=aryansingh3&bg_color=00000000&color=1F2328&line=00F0FF&point=FF2E97&area_color=B026FF&area=true&hide_border=true&custom_title=Commits%20over%20the%20last%20year" alt="Contribution activity graph" width="100%" />
 </picture>
 
 <br><br>
@@ -311,7 +358,7 @@ Step-through visualization of classic sorting algorithms with adjustable array s
 
 </div>
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:8B5CF6,50:6366F1,100:0EA5E9&height=120&section=footer" alt="" />
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:FF2E97,50:B026FF,100:00F0FF&height=120&section=footer" alt="" />
 
 <div align="center">
 <sub>Open to conversations about backend systems, data pipelines, and applied ML.</sub>

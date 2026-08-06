@@ -196,7 +196,7 @@ Custom **named-entity recognition for the automotive domain** — a fine-tuned s
 </td>
 <td width="50%" valign="top">
 
-### [timezone-lookup](https://github.com/aryansingh3/TimeZone_Folder)
+### [timezone-lookup](https://github.com/aryansingh3/timezone-lookup)
 Offline timezone resolution from a postal code or city/state/country. 200k+ city GeoNames database, 80+ countries, normalization for abbreviations and accents, optional Redis cache.
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white)

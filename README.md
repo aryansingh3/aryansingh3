@@ -3,16 +3,18 @@
 <div align="center">
 
 <a href="https://github.com/aryansingh3">
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=20&duration=2800&pause=900&color=6366F1&center=true&vCenter=true&width=620&lines=I+build+the+pipelines+behind+live-event+ticket+markets.;Distributed+scrapers.+Change+streams.+Price+forecasts.;Python+%C2%B7+Go+%C2%B7+MongoDB+%C2%B7+XGBoost+%C2%B7+Qdrant" alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=20&duration=2800&pause=900&color=6366F1&center=true&vCenter=true&width=640&lines=I+build+the+pipelines+behind+live-event+ticket+markets.;15M%2B+API+requests+served+%C2%B7+200%2B+daily+users.;Distributed+scrapers.+Change+streams.+Price+forecasts." alt="Typing SVG" />
 </a>
 
 <sub>B.Tech Computer Science, NSUT Delhi '24 · Noida, India</sub>
 
 <br><br>
 
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Aryan_Singh-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/aryan-singh-192622237/)
 [![Email](https://img.shields.io/badge/Email-aryansinghnse%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:aryansinghnse@gmail.com)
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-aryan10022001-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/aryan10022001)
 
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-aryan10022001-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/aryan10022001)
+[![Kaggle](https://img.shields.io/badge/Kaggle-rrrrarrr-20BEFF?style=for-the-badge&logo=kaggle&logoColor=white)](https://www.kaggle.com/rrrrarrr)
 ![Profile views](https://komarev.com/ghpvc/?username=aryansingh3&style=for-the-badge&color=6366F1&label=PROFILE+VIEWS)
 
 </div>
@@ -25,20 +27,133 @@ I work on **data infrastructure for live-event ticketing** — the systems that 
 
 Day to day that means distributed scrapers behind rotating proxy pools, MongoDB change-stream daemons that keep denormalized fields honest, vector search for entity resolution across marketplaces, and gradient-boosted models that turn all of it into a price call.
 
-> Most of this lives in private repositories, so the sections below describe the systems rather than link to them.
+> Most of my work ships in private and organization repositories, so the sections below describe the systems rather than link to them.
 
 ---
 
-## `⚙` Systems I've Built
+## `🚀` Ticketmetric — Production Platform
+
+<div align="center">
+
+![Requests served](https://img.shields.io/badge/API_requests_served-15M%2B-0EA5E9?style=for-the-badge&labelColor=161B22)
+![Daily users](https://img.shields.io/badge/daily_active_users-200%2B-6366F1?style=for-the-badge&labelColor=161B22)
+![API clients](https://img.shields.io/badge/API_clients-30%2B-8B5CF6?style=for-the-badge&labelColor=161B22)
+![Commits](https://img.shields.io/badge/my_commits-830%2B-EC4899?style=for-the-badge&labelColor=161B22)
+
+</div>
+
+<table>
+<tr>
+<td width="33%" valign="top">
+
+### 🔌 Client API
+[**`API docs ↗`**](https://api-client.ticketmetric.io/api/client/docs/)
+
+Built **from scratch.** The public data API — Bearer API-key auth, Redis-backed rate limiting, tiered membership plans, and live Swagger docs.
+
+**15M+ requests** served across **30+ client integrations.**
+
+`Flask` `Redis` `MongoDB` `PM2`
+
+</td>
+<td width="33%" valign="top">
+
+### 📊 Dashboard
+[**`app.ticketmetric.io ↗`**](https://app.ticketmetric.io/dashboard/upcoming)
+
+The customer-facing analytics product. **Led the full migration off MUI to shadcn/ui + Radix + Tailwind v4** — a ground-up rebuild of the component layer.
+
+**200+ daily active users.**
+
+`React` `TypeScript` `Tailwind v4` `Stripe`
+
+</td>
+<td width="33%" valign="top">
+
+### ⚡ Dashboard API
+`ticket_flask_api`
+
+The analytics backend behind the dashboard — live sales, price history, presale/on-sale filtering, searchable inventory, and hot-section reporting.
+
+`Flask` `MongoDB` `Docker` `Gunicorn`
+
+</td>
+</tr>
+</table>
+
+### How it fits together
+
+```mermaid
+flowchart LR
+    subgraph SRC[" Marketplaces "]
+        A1[StubHub]
+        A2[SeatGeek]
+        A3[Ticketmaster / AXS]
+    end
+
+    subgraph ING[" Ingestion "]
+        B1["Go + Python scrapers<br/>Playwright · rotating proxies"]
+        B2["Venue and capacity<br/>workers"]
+    end
+
+    subgraph CORE[" Data Core "]
+        C1[(MongoDB)]
+        C2["Change-stream daemons<br/>presale / on-sale resolver"]
+        C3["Event matcher<br/>Qdrant + LLM judge"]
+    end
+
+    subgraph ML[" Intelligence "]
+        D1["XGBoost forecasts<br/>1 / 3 / 7-day horizons"]
+        D2["BUY · SELL · HOLD<br/>+ risk scoring"]
+    end
+
+    subgraph OUT[" Delivery "]
+        E1["Client API<br/>15M+ requests"]
+        E2["Dashboard API"]
+        E3["React dashboard<br/>200+ daily users"]
+        E4["MCP server<br/>+ Discord bot"]
+    end
+
+    A1 & A2 & A3 --> B1
+    B1 --> C1
+    B2 --> C1
+    C1 <--> C2
+    C1 <--> C3
+    C1 --> D1 --> D2
+    D2 --> C1
+    C1 --> E1
+    C1 --> E2 --> E3
+    C1 --> E4
+
+    style C1 fill:#6366F1,stroke:#8B5CF6,stroke-width:2px,color:#fff
+    style E1 fill:#0EA5E9,stroke:#0EA5E9,color:#fff
+    style E3 fill:#0EA5E9,stroke:#0EA5E9,color:#fff
+    style D1 fill:#8B5CF6,stroke:#8B5CF6,color:#fff
+    style D2 fill:#8B5CF6,stroke:#8B5CF6,color:#fff
+```
+
+---
+
+## `⚙` Other Systems I've Built
 
 | System | What it does | Stack |
 | :--- | :--- | :--- |
 | **Cross-Marketplace Event Matcher** | Resolves the same real-world event across two ticket marketplaces despite mismatched names, venue aliases, tours, and multi-day passes. Vector similarity first, knowledge graph for aliases, LLM judge only for borderline cases. | `FastAPI` `Qdrant` `FastEmbed` `NetworkX` `GPT-4o-mini` |
 | **Price Forecasting Engine** | Daily feature snapshots → median price forecasts at 1/3/7-day horizons, up/down direction classification, and BUY / SELL / HOLD calls with confidence and per-event risk scores. | `XGBoost` `pandas` `scheduled training` |
-| **First-Sale Field Refresher** | Keeps precomputed presale/on-sale dates correct across platforms with conflicting conventions. Runs as both a change-stream daemon (reacts in seconds) and a cron sweep (safety net for missed resume tokens). | `MongoDB Change Streams` `Python` `Slack` |
+| **First-Sale Field Refresher** | Keeps precomputed presale/on-sale dates correct across platforms with conflicting conventions. Runs as both a change-stream daemon (reacts in seconds) and a cron sweep (safety net for missed resume tokens). | `MongoDB Change Streams` `Slack alerting` |
 | **Distributed Ticket Scrapers** | Multi-source collection behind a rotating proxy pool with structured logging and per-source persistence strategies. Hot paths rewritten in Go for throughput. | `Go` `Playwright` `Redis` `MongoDB` |
-| **Ticketing REST API** | Analytics and subscription APIs — live sales, price history, presale/on-sale filtering, searchable inventory. | `Flask` `MongoDB` `Gunicorn` `Docker` |
 | **MCP Server + Discord Bot** | Model Context Protocol server exposing the data layer to LLMs, with a Discord bot front-end for natural-language queries over the event database. | `MCP` `Python` `Discord API` |
+| **Browser Extension** | Ticketmetric extension surfacing live pricing and inventory signals directly on marketplace pages. | `TypeScript` `Chrome APIs` |
+
+### Where my commits go
+
+```mermaid
+pie showData
+    title Commits across the production platform
+    "Dashboard (React/TS)" : 527
+    "Dashboard API (Flask)" : 206
+    "Client API (Flask)" : 101
+```
 
 ---
 
@@ -111,8 +226,8 @@ Step-through visualization of classic sorting algorithms with adjustable array s
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Go](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
 
 **Backend & Data**
@@ -123,6 +238,15 @@ Step-through visualization of classic sorting algorithms with adjustable array s
 ![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
 ![Qdrant](https://img.shields.io/badge/Qdrant-DC244C?style=for-the-badge&logo=qdrant&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+
+**Frontend**
+
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![Radix UI](https://img.shields.io/badge/Radix_UI-161618?style=for-the-badge&logo=radixui&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![React Query](https://img.shields.io/badge/TanStack_Query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white)
+![Stripe](https://img.shields.io/badge/Stripe-635BFF?style=for-the-badge&logo=stripe&logoColor=white)
 
 **ML & AI**
 
@@ -137,7 +261,7 @@ Step-through visualization of classic sorting algorithms with adjustable array s
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![Sentry](https://img.shields.io/badge/Sentry-362D59?style=for-the-badge&logo=sentry&logoColor=white)
 ![Grafana](https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white)
 
 </div>
@@ -183,11 +307,7 @@ Step-through visualization of classic sorting algorithms with adjustable array s
 
 <br>
 
-<img src="https://github-profile-trophy.vercel.app/?username=aryansingh3&column=7&margin-w=8&margin-h=8&no-bg=true&no-frame=true&theme=discord" alt="Trophies" />
-
-<br><br>
-
-<sub>Most of my commits land in private repositories — the graphs above count them, the repo list can't show them.</sub>
+<sub>Most of my commits land in private and organization repositories — the graphs above count them, the repo list can't show them.</sub>
 
 </div>
 
